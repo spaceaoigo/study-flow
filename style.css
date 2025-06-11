@@ -1,74 +1,126 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;600;700&display=swap');
+
+:root {
+    --bg-color: #f5f5f7;
+    --card-bg-color: #ffffff;
+    --text-color: #1d1d1f;
+    --sub-text-color: #6e6e73;
+    --accent-color: #0071e3;
+    --accent-color-hover: #0077ed;
+    --border-color: #d2d2d7;
+    --font-family: 'Inter', 'Noto Sans JP', sans-serif;
+}
 
 body {
-    font-family: 'Inter', 'Noto Sans JP', sans-serif;
+    font-family: var(--font-family);
+    background-color: var(--bg-color);
+    color: var(--text-color);
 }
 
-div[data-testid="stAppViewContainer"] {
-    background-color: #f0f2f6;
+/* Streamlitのメインコンテナとサイドバーの背景を調整 */
+div[data-testid="stAppViewContainer"],
+div[data-testid="stSidebar"] > div:first-child {
+    background-color: var(--bg-color);
 }
 
-div[data-testid="stVerticalBlock"] > div[style*="flex-direction: column;"] > div[data-testid="stVerticalBlock"] {
-    gap: 0.5rem;
+/* 全体のフォントと見出し */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 600;
 }
 
-div[data-testid="stVerticalBlock"] > div[style*="flex-direction: column;"] > div[data-testid="stVerticalBlock"] > div[data-testid="stVerticalBlock"] > div[data-testid="stContainer"] {
-    transition: all 0.2s ease-in-out;
-    border-radius: 12px;
+h1 {
+    font-size: 2.5rem;
+    letter-spacing: -0.5px;
 }
 
-div[data-testid="stVerticalBlock"] > div[style*="flex-direction: column;"] > div[data-testid="stVerticalBlock"] > div[data-testid="stVerticalBlock"] > div[data-testid="stContainer"]:hover {
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    transform: translateY(-2px);
-    border-color: #007aff !important;
-}
-
-div[data-testid="stButton"] > button {
-    border-radius: 8px;
-    background-color: #007aff;
-    color: white;
-    border: none;
-    font-weight: 500;
-}
-
-div[data-testid="stButton"] > button:hover {
-    background-color: #005ecb;
-    color: white;
-}
-
-div[data-testid="stButton"] > button:focus {
-    box-shadow: 0 0 0 2px #007aff60 !important;
-    background-color: #005ecb;
-    color: white;
-}
-
-.timer-box {
-    background-color: #ffffff;
-    border-radius: 12px;
-    padding: 20px;
-    text-align: center;
+h2 {
+    font-size: 1.75rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.5rem;
     margin-bottom: 1.5rem;
-    border: 1px solid #e0e0e6;
 }
 
-.timer-box h2 {
-    font-size: 3rem;
-    font-weight: 700;
-    color: #007aff;
-    margin: 0;
-    letter-spacing: -1px;
+/* カードスタイル */
+.card {
+    background-color: var(--card-bg-color);
+    border-radius: 18px;
+    padding: 24px;
+    margin-bottom: 1rem;
+    border: 1px solid rgba(0,0,0,0);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+}
+.card:hover {
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    transform: translateY(-2px);
 }
 
-.timer-box p {
-    margin: 0 0 10px 0;
-    color: #555;
+/* ボタン */
+div[data-testid="stButton"] > button {
+    border-radius: 12px;
     font-weight: 500;
+    border: none;
+    padding: 12px 20px;
 }
 
-#stop_button {
-    background-color: #ff3b30;
+/* メインのアクションボタン（開始） */
+button.primary {
+    background-color: var(--accent-color);
+    color: white;
+}
+button.primary:hover {
+    background-color: var(--accent-color-hover);
+    color: white;
+}
+/* 削除ボタン */
+button.secondary {
+    background-color: #f5f5f7;
+    color: #d64541;
+}
+button.secondary:hover {
+    background-color: #e9e9ed;
 }
 
-#stop_button:hover {
-    background-color: #c70000;
+/* タイマーボックス */
+.timer-box {
+    background: var(--card-bg-color);
+    color: var(--text-color);
+    border-radius: 18px;
+    padding: 2rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+}
+.timer-box h2 {
+    font-size: 4rem;
+    font-weight: 700;
+    color: var(--accent-color);
+    margin: 0;
+    border: none;
+    letter-spacing: -2px;
+}
+.timer-box p {
+    margin: 0 0 1rem 0;
+    color: var(--sub-text-color);
+    font-size: 1.1rem;
+}
+
+/* メトリクスクラス */
+div[data-testid="stMetric"] {
+    background-color: var(--card-bg-color);
+    border-radius: 18px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+div[data-testid="stMetric"] label {
+    color: var(--sub-text-color);
+}
+div[data-testid="stMetric"] div[data-testid="stMetricValue"] {
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+/* ローディングスピナー */
+div[data-testid="stSpinner"] > div {
+    border-top-color: var(--accent-color);
 }
